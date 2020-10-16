@@ -90,7 +90,7 @@ namespace ExamplesListToExcelPackage.API.Controllers
         {
             //using ListToExcelPackage.Services
             var fileStream = await OciObjectStorage.RetrieveObject(objectName);
-            fileStream.Position = 0;
+            //fixed fileStream.Position = 0 in v1.0.8
             //return FileSteamResult
             return File(fileStream, "application/octet-stream", $"Orders_{DateTime.Now:yyyy-MM-dd}.xlsx");
         }
