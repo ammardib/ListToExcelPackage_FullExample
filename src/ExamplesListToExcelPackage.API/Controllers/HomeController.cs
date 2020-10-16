@@ -54,7 +54,7 @@ namespace ExamplesListToExcelPackage.API.Controllers
             List<StyleOption> styles = Extensions.GetStyleOptions(ordersList.Count);
             //using ListToExcelPackage
             var fileStream = ListToExcel.CreateFileStream<Order>(ordersList, "My Orders List", styles);
-            fileStream.Position = 0;
+            //fixed fileStream.Position = 0 in v1.0.8
             //return FileSteamResult
             return File(fileStream, "application/octet-stream", $"Orders_{DateTime.Now:yyyy-MM-dd}.xlsx");
         }
