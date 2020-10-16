@@ -21,6 +21,7 @@ namespace ExamplesListToExcelPackage.API
         {
             services.AddControllers();
 
+            //register all services for DI
             services.AddTransient<IOrdersRepository, OrdersRepository>();
         }
 

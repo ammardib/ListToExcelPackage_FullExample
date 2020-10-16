@@ -8,19 +8,28 @@ namespace ExamplesListToExcelPackage.API.Infrastructure.Repositories
 {
     public class OrdersRepository : IOrdersRepository
     {
-        //Should be replaced by method to get data from persistent store
+
+        /// <summary>
+        /// Generates random list of orders, 
+        /// Should be replaced by method to get data from persistent store
+        /// </summary>
+        /// <returns></returns>
         public List<Order> GetOrders()
         {
-            return new List<Order>() {
-            new Order(){OrderId = 80000012, OrderAmount = 540.5M, OrderDate=DateTime.Now.AddDays(-20)},
-            new Order(){OrderId = 80000710, OrderAmount = 140, OrderDate=DateTime.Now.AddDays(-5)},
-            new Order(){OrderId = 80000654, OrderAmount = 90.85M, OrderDate=DateTime.Now.AddDays(-15)},
-            new Order(){OrderId = 80000223, OrderAmount = 1100.6M, OrderDate=DateTime.Now.AddDays(-2)},
-            new Order(){OrderId = 80000845, OrderAmount = 85M, OrderDate=DateTime.Now.AddDays(-10)},
-            new Order(){OrderId = 80000631, OrderAmount = 302.25M, OrderDate=DateTime.Now.AddDays(-8)},
-            new Order(){OrderId = 80000524, OrderAmount = 145M, OrderDate=DateTime.Now.AddDays(-2)},
-            };
-
+            Random _random = new Random();
+        
+            var list = new List<Order>();
+            for (int i=1; i<=1000; i++)
+            {
+                var id = _random.Next(1, 99999).ToString();
+                list.Add(new Order()
+                {
+                    OrderId = int.Parse("800" + id.PadLeft(5, '0')),
+                    OrderAmount = _random.Next(100, 999),
+                    OrderDate = DateTime.Now.AddDays(-_random.Next(1,30))
+                });
+            }
+            return list;
         }
     }
 }

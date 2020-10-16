@@ -50,7 +50,7 @@ namespace ExamplesListToExcelPackage.API.Controllers
         public IActionResult ExportOrdersReportWithStyle()
         {
             var ordersList = _ordersRepository.GetOrders();
-            //Styles separated by another method
+            //Styles separated to dependent method for better understanding
             List<StyleOption> styles = Extensions.GetStyleOptions(ordersList.Count);
             //using ListToExcelPackage
             var fileStream = ListToExcel.CreateFileStream<Order>(ordersList, "My Orders List", styles);
@@ -60,7 +60,7 @@ namespace ExamplesListToExcelPackage.API.Controllers
         }
 
         /// <summary>
-        /// Create the Excel file from list of objects and save it to ObjectStorage (here Oracle Cloud), Returns ObjectName
+        /// Create the Excel file from list of objects and save it to ObjectStorage (here Oracle Cloud Infrastructure), Returns ObjectName
         /// for more information about OCI Object Storage visit: https://docs.cloud.oracle.com/en-us/iaas/Content/Object/Concepts/objectstorageoverview.htm
         /// for creating free cloud account visit: https://www.oracle.com/sa/cloud/free/
         /// NAMESPACE_NAME: axy7edlo4u4z
